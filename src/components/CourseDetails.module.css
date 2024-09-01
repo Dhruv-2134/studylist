@@ -1,0 +1,81 @@
+/* src/components/CourseDetails.module.css */
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2121216d;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #577ca3;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #55555500;
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #f3f363a6 0%, #8dc52ddd 100%);
+}
+
+.courseDetails {
+  width: 60%;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(90deg, #f7f787a6 0%, #98cb40dd 100%);
+  box-shadow: 0 4px 16px rgba(8, 8, 8, 0.877);
+}
+
+.title{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.instructor {
+  font-style: italic;
+  font-weight: 700;
+  color: #3e3d3d;
+}
+
+.description {
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.enrollmentStatus,
+.duration,
+.schedule,
+.location {
+  margin-top: 0.5rem;
+}
+
+.prerequisites,
+.syllabus {
+  margin-top: 2rem;
+}
+
+.syllabusWeek {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+}
+
+@media (max-width: 768px) {
+  .courseDetails {
+    padding: 1rem;
+  }
+}

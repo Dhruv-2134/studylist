@@ -1,0 +1,6 @@
+/* src/components/Layout.module.css */
+.mainContent {
+  min-height: calc(
+    100vh - 80px
+  ); /* Ensures the content area takes up at least the full viewport height minus the Navbar height */
+}
