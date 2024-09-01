@@ -31,7 +31,7 @@ function CourseDetails() {
           alignItems: "center",
         }}
       >
-        <h1>Loading courses...</h1>
+        <h1>Loading Course Details...</h1>
       </div>
     );
   if (!course)
