@@ -35,6 +35,7 @@ const fetchCoursesAPI = () => {
                 "Creating a simple mobile app using React Native components.",
             },
           ],
+          likes: 0,
         },
         {
           id: 2,
@@ -63,6 +64,7 @@ const fetchCoursesAPI = () => {
               content: "Managing complex state in React applications.",
             },
           ],
+          likes: 0,
         },
         {
           id: 3,
@@ -89,6 +91,7 @@ const fetchCoursesAPI = () => {
               content: "Creating a simple REST API using Express.js.",
             },
           ],
+          likes: 0,
         },
         {
           id: 4,
@@ -119,6 +122,7 @@ const fetchCoursesAPI = () => {
                 "Creating a server-side application using Node.js and Express.js.",
             },
           ],
+          likes: 0,
         },
         {
           id: 5,
@@ -146,6 +150,7 @@ const fetchCoursesAPI = () => {
                 "Analyzing data using Python libraries like Pandas and NumPy.",
             },
           ],
+          likes: 0,
         },
         {
           id: 6,
@@ -173,6 +178,7 @@ const fetchCoursesAPI = () => {
                 "Creating a simple machine learning model using Python libraries.",
             },
           ],
+          likes: 0,
         },
         {
           id: 7,
@@ -200,6 +206,7 @@ const fetchCoursesAPI = () => {
                 "Securing your network and protecting against cyber threats.",
             },
           ],
+          likes: 0,
         },
         {
           id: 8,
@@ -227,6 +234,7 @@ const fetchCoursesAPI = () => {
                 "Exploring popular AWS services like EC2, S3, and RDS.",
             },
           ],
+          likes: 0,
         },
         {
           id: 9,
@@ -254,6 +262,7 @@ const fetchCoursesAPI = () => {
                 "Designing user-friendly interfaces for mobile applications.",
             },
           ],
+          likes: 0,
         },
         {
           id: 10,
@@ -281,6 +290,7 @@ const fetchCoursesAPI = () => {
                 "Promoting your brand on social media platforms like Facebook and Instagram.",
             }
           ],
+          likes: 0,
         },
         {
           id: 11,
@@ -308,6 +318,7 @@ const fetchCoursesAPI = () => {
                 "Creating wireframes and prototypes for web and mobile applications.",
             },
           ],
+          likes: 0,
         },
         {
           id: 12,
@@ -335,6 +346,7 @@ const fetchCoursesAPI = () => {
                 "Planning and executing Agile projects using Scrum and Kanban.",
             },
           ],
+          likes: 0,
         },
         {
           id: 13,
@@ -362,6 +374,7 @@ const fetchCoursesAPI = () => {
                 "Building interactive dashboards to visualize data insights.",
             },
           ],
+          likes: 0,
         },
         {
           id: 14,
@@ -389,6 +402,7 @@ const fetchCoursesAPI = () => {
                 "Designing and creating relational databases using SQL.",
             },
           ],
+          likes: 0,
         },
         {
           id: 15,
@@ -416,6 +430,7 @@ const fetchCoursesAPI = () => {
                 "Creating a simple blockchain application using JavaScript.",
             },
           ],
+          likes: 0,
         }
       ]);
     }, 1000);
@@ -433,7 +448,9 @@ export const fetchCoursesAsync = createAsyncThunk(
 const coursesSlice = createSlice({
   name: "courses",
   initialState: {
-    list: [],
+    list: localStorage.getItem("courses")
+      ? JSON.parse(localStorage.getItem("courses"))
+      : [],
     status: "idle",
     error: null,
   },
@@ -454,6 +471,7 @@ const coursesSlice = createSlice({
       .addCase(fetchCoursesAsync.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.list = action.payload;
+        localStorage.setItem("courses", JSON.stringify(action.payload));
       })
       .addCase(fetchCoursesAsync.rejected, (state, action) => {
         state.status = "failed";

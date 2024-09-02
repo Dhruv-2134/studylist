@@ -2,12 +2,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Navbar.module.css';
+import Logo from "../assets/Logo.png";
 
 function Navbar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbarContainer}>
         <Link to="/" className={styles.navbarLogo}>
+          <img src={Logo} alt="Logo" className={styles.sitelogo} />
           StudyList
         </Link>
         <ul className={styles.navMenu}>

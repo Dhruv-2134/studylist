@@ -58,11 +58,11 @@ function CourseDetails() {
         <p className={styles.instructor}>Instructor: {course.instructor}</p>
         <p className={styles.description}>{course.description}</p>
         <p className={styles.enrollmentStatus}>
-          Enrollment Status: {course.enrollmentStatus}
+        <b>Enrollment Status:</b> {course.enrollmentStatus}
         </p>
-        <p className={styles.duration}>Duration: {course.duration}</p>
-        <p className={styles.schedule}>Schedule: {course.schedule}</p>
-        <p className={styles.location}>Location: {course.location}</p>
+        <p className={styles.duration}><b>Duration:</b> {course.duration}</p>
+        <p className={styles.schedule}><b>Schedule:</b> {course.schedule}</p>
+        <p className={styles.location}><b>Location:</b> {course.location}</p>
         <div className={styles.prerequisites}>
           <h2>Pre-requisites:</h2>
           <ul>

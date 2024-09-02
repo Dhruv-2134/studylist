@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useSelector, useDispatch} from "react-redux";
+import React, { useEffect, useState, useRef, createRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { toast, Toaster } from "react-hot-toast";
 import Lottie from "lottie-react";
 import Course_Animation from "../assets/course_animation.json";
@@ -12,8 +12,9 @@ function StudentDashboard() {
   const [enrolledCourses, setEnrolledCourses] = useState(
     courses.map((course) => ({ ...course, progress: 0, completed: false }))
   );
-  const status = useSelector((state) => state.courses.status);
 
+  const status = useSelector((state) => state.courses.status);
+  const [animations, setAnimations] = useState([]);
   const animationRefs = useRef({});
 
   const handleMarkCompleted = (courseId) => {
@@ -75,10 +76,13 @@ function StudentDashboard() {
                   primary: "#713200",
                   secondary: "#FFFAEE",
                 },
+                duration: 2000,
               });
               // Play the animation for the completed course
-              if (animationRefs.current[courseId]) {
-                animationRefs.current[courseId].play();
+              // setanimationOn(true);
+              console.log({ a: animations[courseId],c: courseId, animations });
+              if (animations[courseId]) {
+                animations[courseId].play();
               }
             }}
           >
@@ -89,7 +93,7 @@ function StudentDashboard() {
               height: "50px",
               width: "70px",
               borderRadius: "10px",
-              fontSize: "16px",
+              fontSize: "12px",
             }}
             onClick={() => {
               toast.dismiss(t.id);
@@ -113,13 +117,20 @@ function StudentDashboard() {
         </div>
       </div>
     ));
+    // if (animations[courseId]) {
+    //   animations[courseId].play();
+    // }
   };
 
   const handleUpdateProgress = (courseId, progress) => {
     setEnrolledCourses((prevCourses) =>
       prevCourses.map((course) =>
         course.id === courseId
-          ? { ...course, progress: Math.min(progress, 100) }
+          ? {
+              ...course,
+              progress: Math.min(progress, 100),
+              animationRef: React.createRef(),
+            }
           : course
       )
     );
@@ -154,46 +165,61 @@ function StudentDashboard() {
         <h1>Student Dashboard</h1>
       </div>
       <div className={styles.courseList}>
-        {enrolledCourses.map((course) => (
-          <div key={course.id} className={styles.courseItem}>
-            <div className={styles.heading}>
-              <h2>{course.name}</h2>
-              <Lottie
-                lottieRef={(el) => animationRefs.current[course.id] = el}
-                animationData={Course_Animation}
-                className={styles.animation}
-                autoplay={false}
-                loop={false}
+        {enrolledCourses.map((course) => {
+          const ref = createRef();
+          return (
+            <div key={course.id} className={styles.courseItem}>
+              <div className={styles.heading}>
+                <h2>{course.name}</h2>
+                <Lottie
+                  lottieRef={ref}
+                  animationData={Course_Animation}
+                  onDOMLoaded={(e) => { 
+                    console.log(ref);
+                    console.log({c:course.id})
+                    // animationRefs.current[course.id].current.play();
+                    setAnimations((prevAnimations) => ({
+                      ...prevAnimations,
+                      [course.id]: ref.current,
+                    }));
+                    console.log({animations});
+                  }}
+                  className={styles.animation}
+                  preload="auto"
+                  autoplay={false}
+                  loop={true}
+                  data-id={course.id}
+                />
+              </div>
+              <p>Instructor: {course.instructor}</p>
+              <p>Duration: {course.duration}</p>
+              <p>Enrollment Status: {course.enrollmentStatus}</p>
+              <p>Progress: {course.progress}%</p>
+              <progress
+                value={course.progress}
+                max="100"
+                className={styles.progressBar}
+              ></progress>
+              <input
+                type="number"
+                min="0"
+                max="100"
+                value={course.progress}
+                onChange={(e) =>
+                  handleUpdateProgress(course.id, parseInt(e.target.value))
+                }
+                className={styles.progressInput}
               />
+              <button
+                onClick={() => handleMarkCompleted(course.id)}
+                disabled={course.completed}
+                className={styles.completeButton}
+              >
+                {course.completed ? "Completed" : "Mark as Completed"}
+              </button>
             </div>
-            <p>Instructor: {course.instructor}</p>
-            <p>Duration: {course.duration}</p>
-            <p>Enrollment Status: {course.enrollmentStatus}</p>
-            <p>Progress: {course.progress}%</p> 
-            <progress
-              value={course.progress}
-              max="100"
-              className={styles.progressBar}
-            ></progress>
-            <input
-              type="number"
-              min="0"
-              max="100"
-              value={course.progress}
-              onChange={(e) =>
-                handleUpdateProgress(course.id, parseInt(e.target.value))
-              }
-              className={styles.progressInput}
-            />
-            <button
-              onClick={() => handleMarkCompleted(course.id)}
-              disabled={course.completed}
-              className={styles.completeButton}
-            >
-              {course.completed ? "Completed" : "Mark as Completed"}
-            </button>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

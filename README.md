@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Student Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Student Dashboard is a React component that provides an interface for students to view and manage their enrolled courses. It integrates with a Redux store to fetch the course data and allows users to update their progress and mark courses as completed.
 
-## Available Scripts
+## Tech Stack
 
-In the project directory, you can run:
+- React
+- Redux
+- react-hot-toast
+- Lottie-react
+- CSS Modules
 
-### `npm start`
+## Components
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### `StudentDashboard`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The main component that renders the student dashboard. It includes the following features:
 
-### `npm test`
+- Displays a list of enrolled courses with their details (name, instructor, duration, enrollment status, progress, and completion status).
+- Allows users to update the progress for each course by entering a numerical value.
+- Provides a "Mark as Completed" button that triggers a confirmation toast before updating the course status.
+- Integrates with Lottie animations to play a course completion animation when a course is marked as completed.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Toaster`
 
-### `npm run build`
+The `Toaster` component is integrated into the `StudentDashboard` component to display confirmation and error toasts when interacting with the course completion functionality.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Running the Project Locally
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run the Student Dashboard project locally, follow these steps:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository:
 
-### `npm run eject`
+```
+git clone https://github.com/your-username/student-dashboard.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Navigate to the project directory:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+cd student-dashboard
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Install the dependencies:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+npm install
+```
 
-## Learn More
+4. Start the development server:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This will start the development server and open the application in your default web browser. Any changes you make to the code will automatically trigger a reload in the browser.
 
-### Code Splitting
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To build and deploy the Student Dashboard, you can run the following command:
 
-### Analyzing the Bundle Size
+```
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This will create an optimized production build of the application in the `build` folder. You can then deploy the contents of the `build` folder to your preferred hosting service.

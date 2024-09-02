@@ -57,6 +57,10 @@
   padding: 1rem;
   transition: transform 0.2s ease-in-out;
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .courseItem:hover {
@@ -85,6 +89,75 @@
   font-size: 0.9rem;
 }
 
+/* *************************************************************************************** */
+
+.Btn {
+  width: 140px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: transparent;
+  margin-top: 12px;
+}
+
+.leftContainer {
+  width: 60%;
+  height: 100%;
+  background-color: rgba(206, 131, 61, 0.705);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.leftContainer .like {
+  color: white;
+  font-weight: 600;
+}
+
+.likeCount {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(238, 0, 0);
+  font-weight: 600;
+  position: relative;
+  background-color: white;
+}
+
+.likeCount::before {
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  content: "";
+  background-color: rgb(255, 255, 255);
+  transform: rotate(45deg);
+  left: -4px;
+}
+
+.Btn:hover .leftContainer {
+  background-color: rgb(219, 0, 0);
+}
+
+.Btn:active .leftContainer {
+  background-color: rgb(201, 0, 0);
+}
+
+.Btn:active .leftContainer svg {
+  transform: scale(1.15);
+  transform-origin: top;
+}
+
+
+/* *************************************************************************************** */
+
 .searchInput {
   width: 99%;
   padding: 0.5rem;
@@ -97,7 +170,7 @@
   .courseList {
     grid-template-columns: 1fr;
   }
-  .container {
+  /* .container {
     width: 95%;
-  }
+  } */
 }
