@@ -191,10 +191,10 @@ function StudentDashboard() {
                   data-id={course.id}
                 />
               </div>
-              <p>Instructor: {course.instructor}</p>
-              <p>Duration: {course.duration}</p>
-              <p>Enrollment Status: {course.enrollmentStatus}</p>
-              <p>Progress: {course.progress}%</p>
+              <p><b>Instructor:</b> {course.instructor}</p>
+              <p><b>Duration:</b>{course.duration}</p>
+              <p><b>Enrollment Status:</b> {course.enrollmentStatus}</p>
+              <p><b>Progress:</b> {course.progress}%</p>
               <progress
                 value={course.progress}
                 max="100"
